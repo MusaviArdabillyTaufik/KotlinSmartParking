@@ -12,59 +12,51 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Username"
+        android:text="Hasil"
         android:layout_margin="10dp"
         android:textColor="@color/colorFont"
         android:textSize="20dp"
-        android:id="@+id/usernamePet"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:orientation="vertical"
-        android:layout_margin="50dp"
-        android:background="@drawable/rounded"
-        android:layout_gravity="center"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="143dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            //Scan QR code
-
-        </LinearLayout>
-
-    </LinearLayout>
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/tvresult"/>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginTop="50dp">
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:background="@drawable/button2"
-            android:textColor="@color/colorButton"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/button"
+            android:textColor="@color/colorPrimaryDark"
             android:layout_height="wrap_content"
-            android:text="Logout"
-            android:id="@+id/logoutPet"/>
+            android:text="Scan"
+            android:id="@+id/btn"/>
+
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:background="@drawable/button"
             android:textColor="@color/colorPrimaryDark"
             android:layout_height="wrap_content"
             android:text="Exit"
             android:id="@+id/exitPet"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/button2"
+            android:textColor="@color/colorButton"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:id="@+id/logoutPet"/>
 
     </LinearLayout>
 

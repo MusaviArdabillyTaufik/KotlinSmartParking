@@ -12,7 +12,7 @@
         android:layout_height="500dp"
         android:orientation="vertical"
         android:layout_margin="50dp"
-        android:background="@drawable/backregis"
+        android:background="@drawable/backregister"
         android:layout_gravity="center"
         tools:layout_editor_absoluteX="121dp"
         tools:layout_editor_absoluteY="143dp">

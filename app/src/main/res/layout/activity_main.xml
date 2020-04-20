@@ -8,14 +8,14 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".MainActivity">
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Username"
         android:layout_margin="10dp"
         android:textColor="@color/colorFont"
         android:textSize="20dp"
-        android:id="@+id/sernameUs"/>
+        android:id="@+id/etqr"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,14 +27,13 @@
         tools:layout_editor_absoluteX="121dp"
         tools:layout_editor_absoluteY="143dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
-            //QR code image
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="50dp"
+                android:id="@+id/iv"/>
 
-        </LinearLayout>
 
     </LinearLayout>
 
@@ -47,8 +46,8 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:background="@drawable/button2"
             android:textColor="@color/colorButton"
             android:layout_height="wrap_content"
@@ -57,8 +56,18 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/button"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_height="wrap_content"
+            android:text="Create"
+            android:id="@+id/btn"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:background="@drawable/button"
             android:textColor="@color/colorPrimaryDark"
             android:layout_height="wrap_content"
