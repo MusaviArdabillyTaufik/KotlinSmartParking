@@ -10,7 +10,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import android.Manifest
+import android.content.Context
 import androidx.core.app.ActivityCompat
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class PetugasActivity : AppCompatActivity() {
@@ -21,6 +23,17 @@ class PetugasActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_petugas)
+
+        logout.setOnClickListener{
+            val sharedPreferences=getSharedPreferences("CEKLOGIN", Context.MODE_PRIVATE)
+            val editor=sharedPreferences.edit()
+
+            editor.putString("ROLE"," ")
+            editor.apply()
+
+            startActivity(Intent(this@PetugasActivity, LoginActivity::class.java))
+            finish()
+        }
 
         setupPermissions()
 

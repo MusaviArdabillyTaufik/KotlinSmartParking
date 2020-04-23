@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             val sharedPreferences=getSharedPreferences("CEKLOGIN", Context.MODE_PRIVATE)
             val editor=sharedPreferences.edit()
 
-            editor.putString("STATUS","0")
+            editor.putString("ROLE"," ")
             editor.apply()
 
             startActivity(Intent(this@MainActivity, LoginActivity::class.java))

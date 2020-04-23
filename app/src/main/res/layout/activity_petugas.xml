@@ -56,7 +56,7 @@
             android:textColor="@color/colorButton"
             android:layout_height="wrap_content"
             android:text="Logout"
-            android:id="@+id/logoutPet"/>
+            android:id="@+id/logout"/>
 
     </LinearLayout>
 
