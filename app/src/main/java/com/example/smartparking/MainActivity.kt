@@ -1,5 +1,7 @@
 package com.example.smartparking
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +13,7 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +29,18 @@ class MainActivity : AppCompatActivity() {
         iv = findViewById(R.id.iv) as ImageView
         etqr = findViewById(R.id.etqr) as EditText
         btn = findViewById(R.id.btn) as Button
+
+
+        logout.setOnClickListener{
+            val sharedPreferences=getSharedPreferences("CEKLOGIN", Context.MODE_PRIVATE)
+            val editor=sharedPreferences.edit()
+
+            editor.putString("STATUS","0")
+            editor.apply()
+
+            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+            finish()
+        }
 
         btn!!.setOnClickListener {
             if (etqr!!.text.toString().trim { it <= ' ' }.length == 0) {

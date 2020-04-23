@@ -52,7 +52,7 @@
             android:textColor="@color/colorButton"
             android:layout_height="wrap_content"
             android:text="Logout"
-            android:id="@+id/logoutUs"/>
+            android:id="@+id/logout"/>
 
         <Button
             android:layout_width="wrap_content"
