@@ -3,12 +3,13 @@ package com.example.smartparking
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
@@ -20,16 +21,37 @@ class MainActivity : AppCompatActivity() {
     internal var bitmap: Bitmap? = null
     private var etqr: EditText? = null
     private var iv: ImageView? = null
-    private var btn: Button? = null
+    private var detailMhs: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        iv = findViewById(R.id.iv) as ImageView
-        etqr = findViewById(R.id.etqr) as EditText
-        btn = findViewById(R.id.btn) as Button
+        iv = findViewById<ImageView>(R.id.iv)
+        etqr = findViewById<EditText>(R.id.etqr)
+        detailMhs = findViewById<Button>(R.id.detailMhs)
 
+        var nama = intent.getStringExtra("nama")
+        var email = intent.getStringExtra("email")
+        var nim = intent.getStringExtra("nim")
+        var angkatan = intent.getStringExtra("angkatan")
+        var fakultas = intent.getStringExtra("fakultas")
+
+        etqr!!.setText("$nim")
+        etqr!!.isEnabled = false
+
+        detailMhs!!.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("$nama")
+            builder.setMessage(" Email : $email \n NIM : $nim \n Angkatan : $angkatan \n Fakultas : $fakultas")
+            //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
+
+            builder.setNegativeButton(android.R.string.no) { dialog, which ->
+
+            }
+
+            builder.show()
+        }
 
         logout.setOnClickListener{
             val sharedPreferences=getSharedPreferences("CEKLOGIN", Context.MODE_PRIVATE)
@@ -42,55 +64,18 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-        btn!!.setOnClickListener {
-            if (etqr!!.text.toString().trim { it <= ' ' }.length == 0) {
-                Toast.makeText(this@MainActivity, "Enter String!", Toast.LENGTH_SHORT).show()
-            } else {
-                try {
-                    bitmap = TextToImageEncode(etqr!!.text.toString())
-                    iv!!.setImageBitmap(bitmap)
-//                    val path = saveImage(bitmap)  //give read write permission
-//                    Toast.makeText(this@MainActivity, "QRCode saved to -> $path", Toast.LENGTH_SHORT).show()
-                } catch (e: WriterException) {
-                    e.printStackTrace()
-                }
-
+        if (etqr!!.text.toString().trim { it <= ' ' }.length == 0) {
+            Toast.makeText(this@MainActivity, "Enter String!", Toast.LENGTH_SHORT).show()
+        } else {
+            try {
+                bitmap = TextToImageEncode(etqr!!.text.toString())
+                iv!!.setImageBitmap(bitmap)
+            } catch (e: WriterException) {
+                e.printStackTrace()
             }
         }
     }
 
-//    fun saveImage(myBitmap: Bitmap?): String {
-//        val bytes = ByteArrayOutputStream()
-//        myBitmap!!.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
-//        val wallpaperDirectory = File(
-//                Environment.getExternalStorageDirectory().toString() + IMAGE_DIRECTORY)
-//        // have the object build the directory structure, if needed.
-//
-//        if (!wallpaperDirectory.exists()) {
-//            Log.d("dirrrrrr", "" + wallpaperDirectory.mkdirs())
-//            wallpaperDirectory.mkdirs()
-//        }
-//
-//        try {
-//            val f = File(wallpaperDirectory, Calendar.getInstance()
-//                    .timeInMillis.toString() + ".jpg")
-//            f.createNewFile()   //give read write permission
-//            val fo = FileOutputStream(f)
-//            fo.write(bytes.toByteArray())
-//            MediaScannerConnection.scanFile(this,
-//                    arrayOf(f.path),
-//                    arrayOf("image/jpeg"), null)
-//            fo.close()
-//            Log.d("TAG", "File Saved::--->" + f.absolutePath)
-//
-//            return f.absolutePath
-//        } catch (e1: IOException) {
-//            e1.printStackTrace()
-//        }
-//
-//        return ""
-//
-//    }
 
     @Throws(WriterException::class)
     private fun TextToImageEncode(Value: String): Bitmap? {
@@ -107,9 +92,9 @@ class MainActivity : AppCompatActivity() {
             return null
         }
 
-        val bitMatrixWidth = bitMatrix.getWidth()
+        val bitMatrixWidth = bitMatrix.width
 
-        val bitMatrixHeight = bitMatrix.getHeight()
+        val bitMatrixHeight = bitMatrix.height
 
         val pixels = IntArray(bitMatrixWidth * bitMatrixHeight)
 
@@ -135,5 +120,6 @@ class MainActivity : AppCompatActivity() {
         val QRcodeWidth = 500
         private val IMAGE_DIRECTORY = "/QRcodeDemonuts"
     }
+
 
 }

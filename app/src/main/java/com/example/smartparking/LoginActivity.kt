@@ -4,19 +4,18 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
-import org.json.JSONObject
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
-import com.androidnetworking.AndroidNetworking
 import kotlinx.android.synthetic.main.activity_login.*
-import org.json.JSONObject.NULL
+import org.json.JSONObject
 
 
 class LoginActivity : AppCompatActivity() {
@@ -27,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
     val duration = Toast.LENGTH_SHORT
 
     val context = this
-    val ip = "192.168.100.92"
+    val ip = "192.168.43.135"
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -51,22 +50,13 @@ class LoginActivity : AppCompatActivity() {
 
         val sharedPreferences = getSharedPreferences("CEKLOGIN", Context.MODE_PRIVATE)
         val stat = sharedPreferences.getString("ROLE", "")
-        if (stat == "mahasiswa") {
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-            finish()
-        } else if (stat == "petugas") {
-            startActivity(Intent(this@LoginActivity, PetugasActivity::class.java))
-            finish()
-        } else {
-            btnLogin.setOnClickListener {
-                var email = email.text.toString()
-                var password = password.text.toString()
-                postkerserver(email, password)
-            }
+        btnLogin.setOnClickListener {
+            var email = email.text.toString()
+            var password = password.text.toString()
+            postkerserver(email, password)
         }
 
         setupPermissions()
-        getdariserver()
 
 
         registerLog.setOnClickListener {
@@ -78,32 +68,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-    fun getdariserver(){
-        AndroidNetworking.get("http://$ip/Api/mahasiswa.php")
-            .setPriority(Priority.MEDIUM)
-            .build()
-            .getAsJSONObject(object : JSONObjectRequestListener{
-                override fun onResponse(response: JSONObject) {
-                    Log.e("_kotlinResponse", response.toString())
-
-                    val jsonArray = response.getJSONArray("result")
-                    for (i in 0 until jsonArray.length()){
-                        val jsonObject = jsonArray.getJSONObject(i)
-                        Log.e("_kotlinTitle", jsonObject.optString("nama_user"))
-
-                        nama_user.setText(jsonObject.optString("nama_user"))
-                    }
-                }
-
-                override fun onError(anError: ANError) {
-                    Log.i("_err", anError.toString())
-                }
-            })
-    }
-
 
     private fun postkerserver(data1: String, data2: String) {
-        AndroidNetworking.post("http://$ip/Api/postLogin.php")
+        AndroidNetworking.post("https://test-park1ng.000webhostapp.com/postLogin.php")
             .addBodyParameter("email", data1)
             .addBodyParameter("password", data2)
             .setPriority(Priority.MEDIUM).build()
@@ -114,24 +81,62 @@ class LoginActivity : AppCompatActivity() {
                     for (i in 0 until jsonArray.length()) {
                         val jsonObject = jsonArray.getJSONObject(i)
                         Log.e("_kotlinTitle", jsonObject.optString("role"))
+                        var namaLogin = jsonObject.optString("nama_user")
+                        var emailLogin = jsonObject.optString("email")
                         var rolelogin = jsonObject.optString("role")
-                        txt1.setText(rolelogin)
+                        var nimlogin = jsonObject.optString("nim")
+                        var niklogin = jsonObject.optString("nik")
+                        var angkatanlogin = jsonObject.optString("angkatan")
+                        var fakultaslogin = jsonObject.optString("fakultas")
+                        var telfonlogin = jsonObject.optString("telfon")
+                        var alamatlogin = jsonObject.optString("alamat")
 
                         if (rolelogin == "mahasiswa") {
                             val sharedPreferences =
                                 getSharedPreferences("CEKLOGIN", Context.MODE_PRIVATE)
                             val editor = sharedPreferences.edit()
                             editor.putString("ROLE", rolelogin)
+                            Log.e("_kotlinTitle", jsonObject.optString("nama_user"))
+                            Log.e("_kotlinTitle", jsonObject.optString("nim"))
+                            Log.e("_kotlinTitle", jsonObject.optString("angkatan"))
+                            Log.e("_kotlinTitle", jsonObject.optString("fakultas"))
+                            var nama: String = namaLogin.toString()
+                            var email: String = emailLogin.toString()
+                            var nim: String = nimlogin.toString()
+                            var angkatan: String = angkatanlogin.toString()
+                            var fakultas: String = fakultaslogin.toString()
                             editor.apply()
-                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                            val inten = Intent(this@LoginActivity, MainActivity::class.java)
+                            inten.putExtra("nama", nama)
+                            inten.putExtra("email", email)
+                            inten.putExtra("nim", nim)
+                            inten.putExtra("angkatan", angkatan)
+                            inten.putExtra("fakultas", fakultas)
+                            startActivity(inten)
                             finish()
                         } else if (rolelogin == "petugas") {
                             val sharedPreferences =
                                 getSharedPreferences("CEKLOGIN", Context.MODE_PRIVATE)
                             val editor = sharedPreferences.edit()
                             editor.putString("ROLE", rolelogin)
+                            Log.e("_kotlinTitle", jsonObject.optString("nama_user"))
+                            Log.e("_kotlinTitle", jsonObject.optString("nik"))
+                            Log.e("_kotlinTitle", jsonObject.optString("telfon"))
+                            Log.e("_kotlinTitle", jsonObject.optString("alamat"))
+                            var nama: String = namaLogin.toString()
+                            var email: String = emailLogin.toString()
+                            var nik: String = niklogin.toString()
+                            var telfon: String = telfonlogin.toString()
+                            var alamat: String = alamatlogin.toString()
+
                             editor.apply()
-                            startActivity(Intent(this@LoginActivity, PetugasActivity::class.java))
+                            val inten = Intent(this@LoginActivity, PetugasActivity::class.java)
+                            inten.putExtra("nama", nama)
+                            inten.putExtra("email", email)
+                            inten.putExtra("nik", nik)
+                            inten.putExtra("telfon", telfon)
+                            inten.putExtra("alamat", alamat)
+                            startActivity(inten)
                             finish()
                         } else if (rolelogin == "admin") {
                             Toast.makeText(applicationContext, "Login lewat WEEBS PLS!", Toast.LENGTH_LONG).show()
@@ -145,39 +150,6 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
     }
-
-
-
-//    fun postkerserver(data1: String, data2: String) {
-//        AndroidNetworking.post("http://$ip/Api/postLogin.php")
-//            .addBodyParameter("email", data1)
-//            .addBodyParameter("pass_kotlin", data2)
-//            .setPriority(Priority.MEDIUM).build()
-//            .getAsJSONObject(object : JSONObjectRequestListener {
-//                override fun onResponse(response: JSONObject) {
-//
-//                    val jsonArray = response.getJSONArray("result")
-//                    for (i in 0 until jsonArray.length()) {
-//                        val jsonObject = jsonArray.getJSONObject(i)
-//                        Log.e("_kotlinTitle", jsonObject.optString("status"))
-//                        var statuslogin = jsonObject.optString("status")
-//                        txt1.setText(statuslogin)
-//                        if (statuslogin == "1") {
-//                            val sharedPreferences =
-//                                getSharedPreferences("CEKLOGIN", Context.MODE_PRIVATE)
-//                            val editor = sharedPreferences.edit()
-//                            editor.putString("STATUS", statuslogin)
-//                            editor.apply()
-//                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-//                            finish()
-//                        }
-//                    }
-//                }
-//
-//                override fun onError(error: ANError) { // handle error
-//                }
-//            })
-//    }
 
     private fun setupPermissions() {
         val permission = ContextCompat.checkSelfPermission(this,
@@ -195,3 +167,4 @@ class LoginActivity : AppCompatActivity() {
             RECORD_REQUEST_CODE)
     }
 }
+
