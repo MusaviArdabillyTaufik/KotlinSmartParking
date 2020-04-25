@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.androidnetworking.common.Priority
@@ -21,6 +22,9 @@ import org.json.JSONObject.NULL
 class LoginActivity : AppCompatActivity() {
     private val TAG = "PermissionDemo"
     private val RECORD_REQUEST_CODE = 101
+
+    val text = "Hello toast!"
+    val duration = Toast.LENGTH_SHORT
 
     val context = this
     val ip = "192.168.100.92"
@@ -130,9 +134,9 @@ class LoginActivity : AppCompatActivity() {
                             startActivity(Intent(this@LoginActivity, PetugasActivity::class.java))
                             finish()
                         } else if (rolelogin == "admin") {
-                           //notif login web
+                            Toast.makeText(applicationContext, "Login lewat WEEBS PLS!", Toast.LENGTH_LONG).show()
                         } else  {
-                            //NOTIF SALAH
+                            Toast.makeText(applicationContext, "Error goblog", Toast.LENGTH_LONG).show()
                         }
                     }
                 }
