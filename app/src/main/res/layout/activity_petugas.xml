@@ -248,7 +248,7 @@
             android:layout_margin="10dp"
             android:hint="Plat"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorFont"
             android:textSize="20dp" />
 
     </LinearLayout>

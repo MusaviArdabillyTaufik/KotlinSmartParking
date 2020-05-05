@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.activity_registrasi.*
 import org.json.JSONArray
 
 class RegistrasiActivity : AppCompatActivity() {
-    val ip = "192.168.100.92"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registrasi)

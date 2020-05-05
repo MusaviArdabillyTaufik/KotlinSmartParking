@@ -21,8 +21,6 @@ import com.androidnetworking.interfaces.JSONArrayRequestListener
 import kotlinx.android.synthetic.main.activity_petugas.*
 import org.json.JSONArray
 
-val web = "192.168.100.92"
-
 
 class PetugasActivity : AppCompatActivity() {
     private var btn: Button? = null

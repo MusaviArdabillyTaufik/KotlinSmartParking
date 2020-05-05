@@ -26,27 +26,11 @@ class LoginActivity : AppCompatActivity() {
     val duration = Toast.LENGTH_SHORT
 
     val context = this
-    val ip = "192.168.43.135"
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-//        val sharedPreferences = getSharedPreferences("CEKLOGIN", Context.MODE_PRIVATE)
-//        val stat = sharedPreferences.getString("STATUS", "")
-//        if (stat == "1") {
-//            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-//            finish()
-//        } else {
-//            btnLogin.setOnClickListener {
-//                var email = email.text.toString()
-//                var password = password.text.toString()
-//                Log.i("status",email+password)
-//                postkerserver(email, password)
-//            }
-//        }
-
 
         val sharedPreferences = getSharedPreferences("CEKLOGIN", Context.MODE_PRIVATE)
         val stat = sharedPreferences.getString("ROLE", "")
@@ -66,7 +50,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
-
 
 
     private fun postkerserver(data1: String, data2: String) {
