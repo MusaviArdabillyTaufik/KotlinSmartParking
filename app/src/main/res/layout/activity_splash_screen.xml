@@ -13,12 +13,13 @@
         android:orientation="vertical"
         android:layout_margin="50dp"
         android:layout_gravity="center"
+        android:paddingTop="30dp"
         tools:layout_editor_absoluteX="121dp"
         tools:layout_editor_absoluteY="143dp">
 
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_gravity="center"
             android:background="@drawable/logo"
             android:orientation="vertical"/>
@@ -33,6 +34,12 @@
             android:text="UB Smart Parking"
             android:layout_marginTop="180dp"/>
 
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:indeterminate="true"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
 
 
     </LinearLayout>
