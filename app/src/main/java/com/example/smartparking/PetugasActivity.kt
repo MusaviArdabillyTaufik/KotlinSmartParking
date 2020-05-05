@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -57,12 +59,42 @@ class PetugasActivity : AppCompatActivity() {
         }
 
 
-        save.setOnClickListener {
+        process.setOnClickListener {
             val result = result.text.toString()
             val platNo = platNo.text.toString()
-            postServer(result, platNo)
-            Log.i("result", result + platNo)
-            startActivity(Intent(this, PetugasActivity::class.java))
+            if (result != "hasil") {
+                if (platNo != null) {
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("Parkir Proccess")
+                    builder.setMessage("QR Code : $result \nPlat Nomor : $platNo")
+                    //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
+
+                    builder.setPositiveButton("MASUK") { dialog, which ->
+                        postServer(result, platNo)
+                        Log.i("Parkir Masuk", result + platNo)
+                        startActivity(Intent(this, PetugasActivity::class.java))
+                    }
+                    builder.setNegativeButton("KELUAR") { dialog, which ->
+                        keluarServer(result, platNo)
+                        Log.i("Parkir Masuk", result + platNo)
+                        startActivity(Intent(this, PetugasActivity::class.java))
+                    }
+                    builder.setNeutralButton("CANCEL") { dialog, which ->
+
+                    }
+
+                    builder.show()
+                } else {
+                    Toast.makeText(applicationContext, "Input plat nomor ya cok", Toast.LENGTH_LONG)
+                        .show()
+                }
+            } else {
+                Toast.makeText(
+                    applicationContext,
+                    "Silahkan scan terlebih dahulu!",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
 
 
@@ -81,8 +113,7 @@ class PetugasActivity : AppCompatActivity() {
 
 
     fun postServer(data1: String, data2: String) {
-        Log.i("result", data1 + data2)
-        AndroidNetworking.post("http://ubsmart-parking.herokuapp.com/api/laporan/create")
+        AndroidNetworking.post("https://test-park1ng.000webhostapp.com/createLaporan.php")
             .addBodyParameter("qr_code", data1)
             .addBodyParameter("plat_nomor", data2)
             .setPriority(Priority.MEDIUM).build()
@@ -94,6 +125,23 @@ class PetugasActivity : AppCompatActivity() {
                     Log.i("_err", anError.toString())
                 }
             })
+        Log.i("Parkir Masuk", data1 + data2)
+    }
+
+    fun keluarServer(data1: String, data2: String) {
+        AndroidNetworking.post("https://test-park1ng.000webhostapp.com/updateLaporan.php")
+            .addBodyParameter("qr_code", data1)
+            .addBodyParameter("plat_nomor", data2)
+            .setPriority(Priority.MEDIUM).build()
+            .getAsJSONArray(object : JSONArrayRequestListener {
+                override fun onResponse(response: JSONArray) {
+                }
+
+                override fun onError(anError: ANError?) {
+                    Log.i("_err", anError.toString())
+                }
+            })
+        Log.i("Parkir Keluar", data1 + data2)
     }
 
     private fun setupPermissions() {
@@ -119,6 +167,5 @@ class PetugasActivity : AppCompatActivity() {
         var tvresult: TextView? = null
     }
 }
-
 
 
