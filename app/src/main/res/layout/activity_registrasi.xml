@@ -39,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="Email"
+                android:inputType="textEmailAddress"
                 android:textColor="@color/colorFont"
                 android:textColorHint="@color/colorFont" />
 
@@ -49,6 +50,7 @@
                 android:textColor="@color/colorFont"
                 android:textColorHint="@color/colorFont"
                 android:hint="Nim"
+                android:inputType="numberDecimal"
                 android:layout_marginTop="10dp"
                 android:id="@+id/nim"/>
 
@@ -66,7 +68,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorFont"
                 android:textColorHint="@color/colorFont"
-                android:hint="Batch"
+                android:hint="Angkatan"
+                android:inputType="numberDecimal"
                 android:layout_marginTop="10dp"
                 android:id="@+id/batch"/>
 
@@ -76,6 +79,7 @@
                 android:textColor="@color/colorFont"
                 android:textColorHint="@color/colorFont"
                 android:hint="Password"
+                android:inputType="textPassword"
                 android:layout_marginTop="10dp"
                 android:id="@+id/password"/>
 

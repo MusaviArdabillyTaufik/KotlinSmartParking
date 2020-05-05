@@ -27,14 +27,7 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     }
 
     override fun handleResult(rawResult: Result) {
-        // Do something with the result here
-        // Log.v("tag", rawResult.getText()); // Prints scan results
-        // Log.v("tag", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
-
         PetugasActivity.tvresult!!.text = rawResult.text
         onBackPressed()
-
-        // If you would like to resume scanning, call this method below:
-        //mScannerView.resumeCameraPreview(this);
     }
 }
