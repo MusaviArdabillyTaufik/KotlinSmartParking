@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -24,6 +25,8 @@ import org.json.JSONArray
 
 class PetugasActivity : AppCompatActivity() {
     private var btn: Button? = null
+    var tvresult: TextView? = null
+    var etplat: EditText? = null
     private val TAG = "PermissionDemo"
     private val RECORD_REQUEST_CODE = 101
 
@@ -47,7 +50,10 @@ class PetugasActivity : AppCompatActivity() {
         almRslt.text = "$alamat"
 
         tvresult = findViewById<TextView>(R.id.result)
+        etplat = findViewById<EditText>(R.id.platNo)
 
+        val result = tvresult!!.text.toString()
+        val platNo = etplat!!.text.toString()
 
         btn = findViewById<Button>(R.id.btn)
 
@@ -58,10 +64,8 @@ class PetugasActivity : AppCompatActivity() {
 
 
         process.setOnClickListener {
-            val result = result.text.toString()
-            val platNo = platNo.text.toString()
-            if (result != "hasil") {
-                if (platNo != null) {
+            if ("$result" != "Hasil") {
+                if ("$platNo" != "") {
                     val builder = AlertDialog.Builder(this)
                     builder.setTitle("Parkir Proccess")
                     builder.setMessage("QR Code : $result \nPlat Nomor : $platNo")
@@ -163,7 +167,7 @@ class PetugasActivity : AppCompatActivity() {
     companion object {
 
         var tvresult: TextView? = null
+        var etplat: EditText? = null
     }
 }
-
 
