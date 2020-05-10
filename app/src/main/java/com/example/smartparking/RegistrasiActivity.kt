@@ -3,6 +3,7 @@ package com.example.smartparking
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
@@ -17,16 +18,68 @@ class RegistrasiActivity : AppCompatActivity() {
         setContentView(R.layout.activity_registrasi)
 
         registerCreate.setOnClickListener {
+
             val name = nama.text.toString()
             val email = email.text.toString()
             val nim = nim.text.toString()
             val fakultas = fakultas.text.toString()
             val batch = batch.text.toString()
             val password = password.text.toString()
-            postServer(name, email, nim, fakultas, batch, password)
-            Log.i("result", name + email + nim + fakultas + batch + password)
-            startActivity(Intent(this, LoginActivity::class.java))
+
+            if (name != "" || email != "" || nim != "" || fakultas != "" || batch != "" || email != "" ||
+                password != ""
+            ) {
+                if (name != "") {
+                    if (email != "") {
+                        if (nim != "") {
+                            if (fakultas != "") {
+                                if (batch != "") {
+                                    if (password != "") {
+                                        postServer(name, email, nim, fakultas, batch, password)
+                                        startActivity(Intent(this, LoginActivity::class.java))
+                                    } else {
+                                        Toast.makeText(
+                                            applicationContext,
+                                            "Password e diisi sisan lah cok!",
+                                            Toast.LENGTH_LONG
+                                        )
+                                            .show()
+                                    }
+                                } else {
+                                    Toast.makeText(
+                                        applicationContext,
+                                        "Batch e diisi lah cok!",
+                                        Toast.LENGTH_LONG
+                                    )
+                                        .show()
+                                }
+                            } else {
+                                Toast.makeText(
+                                    applicationContext,
+                                    "arek ngendi?",
+                                    Toast.LENGTH_LONG
+                                )
+                                    .show()
+                            }
+                        } else {
+                            Toast.makeText(applicationContext, "nim mu piro", Toast.LENGTH_LONG)
+                                .show()
+                        }
+                    } else {
+                        Toast.makeText(applicationContext, "email mu opo?", Toast.LENGTH_LONG)
+                            .show()
+                    }
+                } else {
+                    Toast.makeText(applicationContext, "nama mu sopo", Toast.LENGTH_LONG)
+                        .show()
+                }
+            } else {
+                Toast.makeText(applicationContext, "Register opo su?", Toast.LENGTH_LONG)
+                    .show()
+            }
+
         }
+
     }
 
 
