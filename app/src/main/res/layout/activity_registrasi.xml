@@ -3,32 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".RegistrasiActivity"
-    android:background="@color/colorPrimaryDark">
+    android:gravity="center"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_width="333dp"
+        android:layout_height="458dp"
+        android:layout_marginTop="73dp"
         android:orientation="vertical"
-        android:layout_margin="50dp"
-        android:background="@drawable/backregister"
-        android:layout_gravity="center"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="143dp">
+        android:background="@drawable/backregister">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
+            android:padding="22dp"
             android:orientation="vertical">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nama"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="74dp"
                 android:textColorHint="@color/colorFont"
                 android:textColor="@color/colorFont"
                 android:id="@+id/nama"/>
@@ -37,7 +34,6 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/colorFont"
@@ -51,7 +47,6 @@
                 android:textColorHint="@color/colorFont"
                 android:hint="Nim"
                 android:inputType="numberDecimal"
-                android:layout_marginTop="10dp"
                 android:id="@+id/nim"/>
 
             <EditText
@@ -60,7 +55,6 @@
                 android:textColor="@color/colorFont"
                 android:textColorHint="@color/colorFont"
                 android:hint="Faculty"
-                android:layout_marginTop="10dp"
                 android:id="@+id/fakultas" />
 
             <EditText
@@ -70,7 +64,6 @@
                 android:textColorHint="@color/colorFont"
                 android:hint="Angkatan"
                 android:inputType="numberDecimal"
-                android:layout_marginTop="10dp"
                 android:id="@+id/batch"/>
 
             <EditText
@@ -80,23 +73,51 @@
                 android:textColorHint="@color/colorFont"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:layout_marginTop="10dp"
                 android:id="@+id/password"/>
 
-            <Button
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"
-                android:background="@drawable/button"
-                android:textColor="@color/colorPrimaryDark"
-                android:text="Register"
-                android:id="@+id/registerCreate" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center">
 
+                <Button
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/button"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="Register"
+                    android:id="@+id/registerCreate" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:textColor="@color/colorFont"
+            android:text="Already have an account? "/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:textColor="@color/colorButton"
+            android:text="Login"
+            android:id="@+id/loginReg"/>
 
     </LinearLayout>
 

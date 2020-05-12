@@ -11,7 +11,6 @@ import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONArrayRequestListener
 import kotlinx.android.synthetic.main.activity_registrasi.*
 import org.json.JSONArray
-
 class RegistrasiActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,8 +78,12 @@ class RegistrasiActivity : AppCompatActivity() {
             }
 
         }
-
+        loginReg.setOnClickListener{
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
     }
+
+
 
 
     fun postServer(
@@ -112,3 +115,4 @@ class RegistrasiActivity : AppCompatActivity() {
 
 
 }
+
