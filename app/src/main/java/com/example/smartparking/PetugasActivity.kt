@@ -25,7 +25,6 @@ import org.json.JSONArray
 
 class PetugasActivity : AppCompatActivity() {
     private var btn: Button? = null
-    var tvresult: TextView? = null
     var nmaRslt: TextView? = null
     var emlRslt: TextView? = null
     var nikRslt: TextView? = null
@@ -41,7 +40,7 @@ class PetugasActivity : AppCompatActivity() {
 
         setupPermissions()
 
-        tvresult = findViewById<TextView>(R.id.result)
+        tvresult = findViewById<TextView>(R.id.tvresult)
         etplat = findViewById<EditText>(R.id.platNo)
         btn = findViewById<Button>(R.id.btn)
         nmaRslt = findViewById<TextView>(R.id.nmaRslt)
@@ -92,7 +91,11 @@ class PetugasActivity : AppCompatActivity() {
 
                     builder.show()
                 } else {
-                    Toast.makeText(applicationContext, "Input plat nomor ya cok", Toast.LENGTH_LONG)
+                    Toast.makeText(
+                        applicationContext,
+                        "Input plat nomor terlebih dahulu!",
+                        Toast.LENGTH_LONG
+                    )
                         .show()
                 }
             } else {
