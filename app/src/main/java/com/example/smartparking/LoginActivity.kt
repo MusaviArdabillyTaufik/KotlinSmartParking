@@ -37,7 +37,27 @@ class LoginActivity : AppCompatActivity() {
         btnLogin.setOnClickListener {
             var email = email.text.toString()
             var password = password.text.toString()
-            postkerserver(email, password)
+
+            if (email != "" || password != "") {
+                if (email != "") {
+                    if (password != "") {
+                        postkerserver(email, password)
+                    } else {
+                        Toast.makeText(
+                            applicationContext,
+                            "Password e diisi sisan lah cok!",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                } else {
+                    Toast.makeText(applicationContext, "Email e diisi lah cok!", Toast.LENGTH_LONG)
+                        .show()
+                }
+            } else {
+                Toast.makeText(applicationContext, "HE BLOK, FORM E DIISI LAH!", Toast.LENGTH_LONG)
+                    .show()
+            }
+
         }
 
         setupPermissions()
@@ -52,6 +72,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
+
     private fun postkerserver(data1: String, data2: String) {
         AndroidNetworking.post("https://test-park1ng.000webhostapp.com/postLogin.php")
             .addBodyParameter("email", data1)
@@ -61,6 +82,13 @@ class LoginActivity : AppCompatActivity() {
                 override fun onResponse(response: JSONObject) {
 
                     val jsonArray = response.getJSONArray("result")
+
+                    if (jsonArray.length() == 0) {
+                        Log.e("_kotlinTitle", "null")
+                        Toast.makeText(applicationContext, "Error Bambang", Toast.LENGTH_LONG)
+                            .show()
+                    }
+
                     for (i in 0 until jsonArray.length()) {
                         val jsonObject = jsonArray.getJSONObject(i)
                         Log.e("_kotlinTitle", jsonObject.optString("role"))
@@ -123,10 +151,9 @@ class LoginActivity : AppCompatActivity() {
                             finish()
                         } else if (rolelogin == "admin") {
                             Toast.makeText(applicationContext, "Login lewat WEEBS PLS!", Toast.LENGTH_LONG).show()
-                        } else  {
-                            Toast.makeText(applicationContext, "Error goblog", Toast.LENGTH_LONG).show()
                         }
                     }
+
                 }
 
                 override fun onError(error: ANError) { // handle error

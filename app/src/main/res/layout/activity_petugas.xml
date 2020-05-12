@@ -248,6 +248,7 @@
             android:layout_margin="10dp"
             android:hint="Plat"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColorHint="@color/colorFont"
             android:textColor="@color/colorFont"
             android:textSize="20dp" />
 

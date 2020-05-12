@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -24,6 +25,13 @@ import org.json.JSONArray
 
 class PetugasActivity : AppCompatActivity() {
     private var btn: Button? = null
+    var tvresult: TextView? = null
+    var nmaRslt: TextView? = null
+    var emlRslt: TextView? = null
+    var nikRslt: TextView? = null
+    var tlfRslt: TextView? = null
+    var almRslt: TextView? = null
+    var etplat: EditText? = null
     private val TAG = "PermissionDemo"
     private val RECORD_REQUEST_CODE = 101
 
@@ -33,6 +41,16 @@ class PetugasActivity : AppCompatActivity() {
 
         setupPermissions()
 
+        tvresult = findViewById<TextView>(R.id.result)
+        etplat = findViewById<EditText>(R.id.platNo)
+        btn = findViewById<Button>(R.id.btn)
+        nmaRslt = findViewById<TextView>(R.id.nmaRslt)
+        emlRslt = findViewById<TextView>(R.id.emlRslt)
+        nikRslt = findViewById<TextView>(R.id.nikRslt)
+        tlfRslt = findViewById<TextView>(R.id.tlfRslt)
+        almRslt = findViewById<TextView>(R.id.almRslt)
+
+
 
         var nama = intent.getStringExtra("nama")
         var email = intent.getStringExtra("email")
@@ -40,28 +58,23 @@ class PetugasActivity : AppCompatActivity() {
         var telfon = intent.getStringExtra("telfon")
         var alamat = intent.getStringExtra("alamat")
 
-        nmaRslt.text = "$nama"
-        emlRslt.text = "$email"
-        nikRslt.text = "$nik"
-        tlfRslt.text = "$telfon"
-        almRslt.text = "$alamat"
 
-        tvresult = findViewById<TextView>(R.id.result)
-
-
-        btn = findViewById<Button>(R.id.btn)
+        nmaRslt!!.text = "$nama"
+        emlRslt!!.text = "$email"
+        nikRslt!!.text = "$nik"
+        tlfRslt!!.text = "$telfon"
+        almRslt!!.text = "$alamat"
 
         btn!!.setOnClickListener {
-            val intent = Intent(this@PetugasActivity, ScanActivity::class.java)
-            startActivity(intent)
+            val inten = Intent(this@PetugasActivity, ScanActivity::class.java)
+            startActivity(inten)
         }
 
-
         process.setOnClickListener {
-            val result = result.text.toString()
-            val platNo = platNo.text.toString()
-            if (result != "hasil") {
-                if (platNo != null) {
+            val result = tvresult!!.text.toString()
+            val platNo = etplat!!.text.toString()
+            if ("$result" != "Hasil") {
+                if ("$platNo" != "") {
                     val builder = AlertDialog.Builder(this)
                     builder.setTitle("Parkir Proccess")
                     builder.setMessage("QR Code : $result \nPlat Nomor : $platNo")
@@ -69,13 +82,9 @@ class PetugasActivity : AppCompatActivity() {
 
                     builder.setPositiveButton("MASUK") { dialog, which ->
                         postServer(result, platNo)
-                        Log.i("Parkir Masuk", result + platNo)
-                        startActivity(Intent(this, PetugasActivity::class.java))
                     }
                     builder.setNegativeButton("KELUAR") { dialog, which ->
                         keluarServer(result, platNo)
-                        Log.i("Parkir Masuk", result + platNo)
-                        startActivity(Intent(this, PetugasActivity::class.java))
                     }
                     builder.setNeutralButton("CANCEL") { dialog, which ->
 
@@ -123,14 +132,20 @@ class PetugasActivity : AppCompatActivity() {
                     Log.i("_err", anError.toString())
                 }
             })
-        Log.i("Parkir Masuk", data1 + data2)
+        Log.e("Parkir Masuk", data1 + " - " + data2)
+        Toast.makeText(
+            applicationContext,
+            data1 + " - " + data2 + " berhasil masuk!",
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     fun keluarServer(data1: String, data2: String) {
         AndroidNetworking.post("https://test-park1ng.000webhostapp.com/updateLaporan.php")
             .addBodyParameter("qr_code", data1)
             .addBodyParameter("plat_nomor", data2)
-            .setPriority(Priority.MEDIUM).build()
+            .setPriority(Priority.MEDIUM)
+            .build()
             .getAsJSONArray(object : JSONArrayRequestListener {
                 override fun onResponse(response: JSONArray) {
                 }
@@ -139,7 +154,12 @@ class PetugasActivity : AppCompatActivity() {
                     Log.i("_err", anError.toString())
                 }
             })
-        Log.i("Parkir Keluar", data1 + data2)
+        Log.e("Parkir Keluar", data1 + " - " + data2)
+        Toast.makeText(
+            applicationContext,
+            data1 + " - " + data2 + " berhasil keluar!",
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     private fun setupPermissions() {
@@ -158,12 +178,13 @@ class PetugasActivity : AppCompatActivity() {
             RECORD_REQUEST_CODE)
     }
 
-
-
     companion object {
 
         var tvresult: TextView? = null
+        var nmaRslt: TextView? = null
+        var emlRslt: TextView? = null
+        var nikRslt: TextView? = null
+        var tlfRslt: TextView? = null
+        var almRslt: TextView? = null
     }
 }
-
-
