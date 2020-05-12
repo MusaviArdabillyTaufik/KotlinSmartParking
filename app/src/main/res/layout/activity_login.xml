@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="333dp"
-        android:layout_height="311dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="125dp"
         android:orientation="vertical"
         android:background="@drawable/backlog">
