@@ -45,16 +45,16 @@ class LoginActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(
                             applicationContext,
-                            "Password e diisi sisan lah cok!",
+                            "Password kosong!",
                             Toast.LENGTH_LONG
                         ).show()
                     }
                 } else {
-                    Toast.makeText(applicationContext, "Email e diisi lah cok!", Toast.LENGTH_LONG)
+                    Toast.makeText(applicationContext, "Email Kosong!", Toast.LENGTH_LONG)
                         .show()
                 }
             } else {
-                Toast.makeText(applicationContext, "HE BLOK, FORM E DIISI LAH!", Toast.LENGTH_LONG)
+                Toast.makeText(applicationContext, "Mohon mengisi form!", Toast.LENGTH_LONG)
                     .show()
             }
 
@@ -150,7 +150,11 @@ class LoginActivity : AppCompatActivity() {
                             startActivity(inten)
                             finish()
                         } else if (rolelogin == "admin") {
-                            Toast.makeText(applicationContext, "Login lewat WEEBS PLS!", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                applicationContext,
+                                "Mohon Login lewat website!",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
 
