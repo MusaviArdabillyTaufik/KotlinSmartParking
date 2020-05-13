@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorFont"
                 android:textColorHint="@color/colorFont"
-                android:hint="Nim"
+                android:hint="NIM"
                 android:inputType="numberDecimal"
                 android:id="@+id/nim"/>
 
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorFont"
                 android:textColorHint="@color/colorFont"
-                android:hint="Faculty"
+                android:hint="Fakultas"
                 android:id="@+id/fakultas" />
 
             <EditText

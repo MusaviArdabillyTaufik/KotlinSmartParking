@@ -10,7 +10,9 @@ import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONArrayRequestListener
 import kotlinx.android.synthetic.main.activity_registrasi.*
+import maes.tech.intentanim.CustomIntent
 import org.json.JSONArray
+
 class RegistrasiActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,14 @@ class RegistrasiActivity : AppCompatActivity() {
                                     if (password != "") {
                                         postServer(name, email, nim, fakultas, batch, password)
                                         startActivity(Intent(this, LoginActivity::class.java))
+                                        Toast.makeText(
+                                            applicationContext,
+                                            "Registrasi Berhasil !\nSilahkan Login menggunakan akun anda !",
+                                            Toast.LENGTH_LONG
+                                        )
+                                            .show()
+                                        CustomIntent.customType(this, "fadein-to-fadeout")
+                                        finish()
                                     } else {
                                         Toast.makeText(
                                             applicationContext,
@@ -84,11 +94,19 @@ class RegistrasiActivity : AppCompatActivity() {
         }
 
         loginReg.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            CustomIntent.customType(this, "up-to-bottom")
             finish()
         }
 
     }
 
+    override fun onBackPressed() {
+        startActivity(Intent(this, LoginActivity::class.java))
+        CustomIntent.customType(this, "up-to-bottom")
+        finish()
+        return
+    }
 
     fun postServer(
         data1: String,

@@ -15,6 +15,7 @@ import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import kotlinx.android.synthetic.main.activity_login.*
+import maes.tech.intentanim.CustomIntent
 import org.json.JSONObject
 
 
@@ -67,6 +68,8 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(context, RegistrasiActivity::class.java)
 
             startActivity(intent)
+            CustomIntent.customType(this, "bottom-to-up")
+            finish()
         }
 
     }
@@ -129,6 +132,7 @@ class LoginActivity : AppCompatActivity() {
                                 "Selamat Datang :)",
                                 Toast.LENGTH_LONG
                             ).show()
+                            CustomIntent.customType(this@LoginActivity, "left-to-right")
                             finish()
                         } else if (rolelogin == "petugas") {
                             val sharedPreferences =
@@ -158,6 +162,7 @@ class LoginActivity : AppCompatActivity() {
                                 "Selamat Datang :)",
                                 Toast.LENGTH_LONG
                             ).show()
+                            CustomIntent.customType(this@LoginActivity, "left-to-right")
                             finish()
                         } else if (rolelogin == "admin") {
                             Toast.makeText(
