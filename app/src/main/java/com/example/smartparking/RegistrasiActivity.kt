@@ -4,10 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
@@ -16,24 +13,33 @@ import com.androidnetworking.interfaces.JSONArrayRequestListener
 import kotlinx.android.synthetic.main.activity_registrasi.*
 import maes.tech.intentanim.CustomIntent
 import org.json.JSONArray
+import java.util.*
+import kotlin.collections.ArrayList
 
 class RegistrasiActivity : AppCompatActivity() {
+
+    companion object{
+        lateinit var fakultasIsi:String
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registrasi)
 
-        val f_list = resources.getStringArray(R.array.fakultas_list)
-        val spinner = findViewById<Spinner>(R.id.fakultas)
-        val arrayadapter = ArrayAdapter(this@RegistrasiActivity, android.R.layout.simple_spinner_item, f_list)
-        spinner.adapter = arrayadapter
-        spinner.onItemSelectedListener = object  : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                parent?.getItemAtPosition(p2).toString() // njupuk value
+        val fakultasSpinner = findViewById(R.id.fakultas) as Spinner
+
+        val arrayFak = ArrayList<String>(Arrays.asList(*resources.getStringArray(R.array.fakultas_list)))
+        val arrayAdapter = ArrayAdapter(this@RegistrasiActivity, R.layout.array_list_view, arrayFak)
+        fakultasSpinner.adapter = arrayAdapter
+        fakultasSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                fakultasIsi = parent?.getItemAtPosition(position).toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
+
         }
 
         registerCreate.setOnClickListener {
@@ -41,65 +47,51 @@ class RegistrasiActivity : AppCompatActivity() {
             val name = nama.text.toString()
             val email = email.text.toString()
             val nim = nim.text.toString()
-            val fakultas = spinner.adapter.toString() //Carane nyelok nekene piye pal ?
+            val fakultass = fakultasIsi
             val batch = batch.text.toString()
             val password = password.text.toString()
 
-            if (name != "" || email != "" || nim != "" || batch != "" || email != "" ||
+            if (name != "" || email != "" || nim != "" || fakultass != "" || batch != "" || email != "" ||
                 password != ""
             ) {
                 if (name != "") {
                     if (email != "") {
                         if (nim != "") {
+                            if (fakultass != "") {
                                 if (batch != "") {
                                     if (password != "") {
-                                        postServer(name, email, nim, fakultas, batch, password)
+
+                                        postServer(name, email, nim, fakultass, batch, password)
+
                                         startActivity(Intent(this, LoginActivity::class.java))
-                                        Toast.makeText(
-                                            applicationContext,
-                                            "Registrasi Berhasil !\nSilahkan Login menggunakan akun anda !",
-                                            Toast.LENGTH_LONG
-                                        )
-                                            .show()
+
+                                        Toast.makeText(applicationContext, "Registrasi Berhasil !\nSilahkan Login menggunakan akun anda !", Toast.LENGTH_LONG).show()
+
                                         CustomIntent.customType(this, "fadein-to-fadeout")
+
                                         finish()
+
                                     } else {
-                                        Toast.makeText(
-                                            applicationContext,
-                                            "Password mohon diisi!",
-                                            Toast.LENGTH_LONG
-                                        )
-                                            .show()
+                                        Toast.makeText(applicationContext, "Password mohon diisi!", Toast.LENGTH_LONG).show()
                                     }
                                 } else {
-                                    Toast.makeText(
-                                        applicationContext,
-                                        "Batch mohon diisi!",
-                                        Toast.LENGTH_LONG
-                                    )
-                                        .show()
+                                    Toast.makeText(applicationContext, "Batch mohon diisi!", Toast.LENGTH_LONG).show()
                                 }
                             } else {
-                            Toast.makeText(
-                                applicationContext,
-                                "NIM mohon diisi!",
-                                Toast.LENGTH_LONG
-                            )
-                                .show()
+                                Toast.makeText(applicationContext, "Fakultas mohon diisi!", Toast.LENGTH_LONG).show()
+                            }
+                        } else {
+                            Toast.makeText(applicationContext, "NIM mohon diisi!", Toast.LENGTH_LONG).show()
                         }
                     } else {
-                        Toast.makeText(applicationContext, "Email mohon diisi!", Toast.LENGTH_LONG)
-                            .show()
+                        Toast.makeText(applicationContext, "Email mohon diisi!", Toast.LENGTH_LONG).show()
                     }
                 } else {
-                    Toast.makeText(applicationContext, "Nama mohon diisi!", Toast.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(applicationContext, "Nama mohon diisi!", Toast.LENGTH_LONG).show()
                 }
             } else {
-                Toast.makeText(applicationContext, "Mohon form diisi!", Toast.LENGTH_LONG)
-                    .show()
+                Toast.makeText(applicationContext, "Mohon form diisi!", Toast.LENGTH_LONG).show()
             }
-
         }
 
         loginReg.setOnClickListener {
@@ -125,7 +117,7 @@ class RegistrasiActivity : AppCompatActivity() {
         data5: String,
         data6: String
     ) {
-        Log.i("result", data1 + data2)
+        Log.e("result", data1 +" - "+ data2 +" - "+ data3 +" - "+ data4 +" - "+ data5 +" - "+ data6)
         AndroidNetworking.post("http://ubsmart-parking.herokuapp.com/api/mahasiswa/create")
             .addBodyParameter("nama_user", data1)
             .addBodyParameter("email", data2)

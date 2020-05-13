@@ -46,7 +46,6 @@
                 android:textColor="@color/colorFont"
                 android:textColorHint="@color/colorFont"
                 android:hint="NIM"
-                android:maxLength="15"
                 android:inputType="numberDecimal"
                 android:id="@+id/nim"/>
 
@@ -54,10 +53,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:padding="5dp"
-                android:id="@+id/fakultas"
                 android:popupBackground="@drawable/spinner_bg"
-                android:entries="@array/fakultas_list"/>
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                android:id="@+id/fakultas"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -65,7 +63,6 @@
                 android:textColor="@color/colorFont"
                 android:textColorHint="@color/colorFont"
                 android:hint="Angkatan"
-                android:maxLength="4"
                 android:inputType="numberDecimal"
                 android:id="@+id/batch"/>
 
@@ -75,7 +72,6 @@
                 android:textColor="@color/colorFont"
                 android:textColorHint="@color/colorFont"
                 android:hint="Password"
-
                 android:inputType="textPassword"
                 android:id="@+id/password"/>
 
