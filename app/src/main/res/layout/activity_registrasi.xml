@@ -82,12 +82,12 @@
                 android:gravity="center">
 
                 <Button
+                    android:id="@+id/registerCreate"
                     android:layout_width="90dp"
                     android:layout_height="40dp"
                     android:background="@drawable/button"
-                    android:textColor="@color/colorPrimaryDark"
                     android:text="Register"
-                    android:id="@+id/registerCreate" />
+                    android:textColor="@color/colorPrimaryDark" />
 
             </LinearLayout>
 
@@ -98,26 +98,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="30dp"
         android:layout_alignParentBottom="true"
-        android:gravity="center_horizontal">
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:text="Already have an account? "
             android:textAlignment="center"
-            android:textColor="@color/colorFont"
-            android:text="Already have an account? "/>
+            android:textColor="@color/colorFont" />
 
 
         <TextView
+            android:id="@+id/loginReg"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textAlignment="center"
-            android:textColor="@color/colorButton"
             android:text="Login"
-            android:id="@+id/loginReg"/>
+            android:textAlignment="center"
+            android:textColor="@color/colorButton" />
 
     </LinearLayout>
 

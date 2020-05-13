@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             builder.setMessage(" Email : $email \n NIM : $nim \n Angkatan : $angkatan \n Fakultas : $fakultas")
             //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
 
-            builder.setNegativeButton(android.R.string.no) { dialog, which ->
+            builder.setNegativeButton("OK") { dialog, which ->
 
             }
 
@@ -61,6 +61,11 @@ class MainActivity : AppCompatActivity() {
             editor.apply()
 
             startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+            Toast.makeText(
+                applicationContext,
+                "Selamat Tinggal :(",
+                Toast.LENGTH_LONG
+            ).show()
             finish()
         }
 

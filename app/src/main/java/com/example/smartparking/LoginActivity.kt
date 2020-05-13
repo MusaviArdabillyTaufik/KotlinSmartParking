@@ -45,16 +45,16 @@ class LoginActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(
                             applicationContext,
-                            "Password e diisi sisan lah cok!",
+                            "Password kosong!",
                             Toast.LENGTH_LONG
                         ).show()
                     }
                 } else {
-                    Toast.makeText(applicationContext, "Email e diisi lah cok!", Toast.LENGTH_LONG)
+                    Toast.makeText(applicationContext, "Email Kosong!", Toast.LENGTH_LONG)
                         .show()
                 }
             } else {
-                Toast.makeText(applicationContext, "HE BLOK, FORM E DIISI LAH!", Toast.LENGTH_LONG)
+                Toast.makeText(applicationContext, "Mohon mengisi form!", Toast.LENGTH_LONG)
                     .show()
             }
 
@@ -85,7 +85,7 @@ class LoginActivity : AppCompatActivity() {
 
                     if (jsonArray.length() == 0) {
                         Log.e("_kotlinTitle", "null")
-                        Toast.makeText(applicationContext, "Error Bambang", Toast.LENGTH_LONG)
+                        Toast.makeText(applicationContext, "Email atau Password salah !", Toast.LENGTH_LONG)
                             .show()
                     }
 
@@ -124,6 +124,11 @@ class LoginActivity : AppCompatActivity() {
                             inten.putExtra("angkatan", angkatan)
                             inten.putExtra("fakultas", fakultas)
                             startActivity(inten)
+                            Toast.makeText(
+                                applicationContext,
+                                "Selamat Datang :)",
+                                Toast.LENGTH_LONG
+                            ).show()
                             finish()
                         } else if (rolelogin == "petugas") {
                             val sharedPreferences =
@@ -148,9 +153,18 @@ class LoginActivity : AppCompatActivity() {
                             inten.putExtra("telfon", telfon)
                             inten.putExtra("alamat", alamat)
                             startActivity(inten)
+                            Toast.makeText(
+                                applicationContext,
+                                "Selamat Datang :)",
+                                Toast.LENGTH_LONG
+                            ).show()
                             finish()
                         } else if (rolelogin == "admin") {
-                            Toast.makeText(applicationContext, "Login lewat WEEBS PLS!", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                applicationContext,
+                                "Mohon Login lewat website!",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
 
@@ -177,4 +191,3 @@ class LoginActivity : AppCompatActivity() {
             RECORD_REQUEST_CODE)
     }
 }
-

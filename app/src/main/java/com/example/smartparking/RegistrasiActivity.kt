@@ -39,7 +39,7 @@ class RegistrasiActivity : AppCompatActivity() {
                                     } else {
                                         Toast.makeText(
                                             applicationContext,
-                                            "Password e diisi sisan lah cok!",
+                                            "Password mohon diisi!",
                                             Toast.LENGTH_LONG
                                         )
                                             .show()
@@ -47,7 +47,7 @@ class RegistrasiActivity : AppCompatActivity() {
                                 } else {
                                     Toast.makeText(
                                         applicationContext,
-                                        "Batch e diisi lah cok!",
+                                        "Batch mohon diisi!",
                                         Toast.LENGTH_LONG
                                     )
                                         .show()
@@ -55,35 +55,39 @@ class RegistrasiActivity : AppCompatActivity() {
                             } else {
                                 Toast.makeText(
                                     applicationContext,
-                                    "arek ngendi?",
+                                    "Fakultas mohon diisi!",
                                     Toast.LENGTH_LONG
                                 )
                                     .show()
                             }
                         } else {
-                            Toast.makeText(applicationContext, "nim mu piro", Toast.LENGTH_LONG)
+                            Toast.makeText(
+                                applicationContext,
+                                "NIM mohon diisi!",
+                                Toast.LENGTH_LONG
+                            )
                                 .show()
                         }
                     } else {
-                        Toast.makeText(applicationContext, "email mu opo?", Toast.LENGTH_LONG)
+                        Toast.makeText(applicationContext, "Email mohon diisi!", Toast.LENGTH_LONG)
                             .show()
                     }
                 } else {
-                    Toast.makeText(applicationContext, "nama mu sopo", Toast.LENGTH_LONG)
+                    Toast.makeText(applicationContext, "Nama mohon diisi!", Toast.LENGTH_LONG)
                         .show()
                 }
             } else {
-                Toast.makeText(applicationContext, "Register opo su?", Toast.LENGTH_LONG)
+                Toast.makeText(applicationContext, "Mohon form diisi!", Toast.LENGTH_LONG)
                     .show()
             }
 
         }
-        loginReg.setOnClickListener{
-            startActivity(Intent(this, LoginActivity::class.java))
+
+        loginReg.setOnClickListener {
+            finish()
         }
+
     }
-
-
 
 
     fun postServer(
@@ -112,7 +116,5 @@ class RegistrasiActivity : AppCompatActivity() {
                 }
             })
     }
-
-
 }
 

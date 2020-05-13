@@ -25,7 +25,6 @@ import org.json.JSONArray
 
 class PetugasActivity : AppCompatActivity() {
     private var btn: Button? = null
-    var tvresult: TextView? = null
     var nmaRslt: TextView? = null
     var emlRslt: TextView? = null
     var nikRslt: TextView? = null
@@ -92,7 +91,11 @@ class PetugasActivity : AppCompatActivity() {
 
                     builder.show()
                 } else {
-                    Toast.makeText(applicationContext, "Input plat nomor ya cok", Toast.LENGTH_LONG)
+                    Toast.makeText(
+                        applicationContext,
+                        "Input plat nomor terlebih dahulu!",
+                        Toast.LENGTH_LONG
+                    )
                         .show()
                 }
             } else {
@@ -113,6 +116,11 @@ class PetugasActivity : AppCompatActivity() {
             editor.apply()
 
             startActivity(Intent(this@PetugasActivity, LoginActivity::class.java))
+            Toast.makeText(
+                applicationContext,
+                "Selamat Tinggal :(",
+                Toast.LENGTH_LONG
+            ).show()
             finish()
         }
 

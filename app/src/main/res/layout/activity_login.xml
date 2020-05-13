@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context=".LoginActivity"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
 
     <LinearLayout
         android:layout_width="333dp"
@@ -18,8 +18,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="22dp"
             android:layout_gravity="center"
+            android:padding="22dp"
             android:orientation="vertical">
 
 
@@ -60,26 +60,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="125dp"
         android:layout_alignParentBottom="true"
-        android:gravity="center_horizontal">
+        android:layout_marginTop="125dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:text="Don't have an account ? "
             android:textAlignment="center"
-            android:textColor="@color/colorFont"
-            android:text="Don't have an account ? "/>
+            android:textColor="@color/colorFont" />
 
 
         <TextView
+            android:id="@+id/registerLog"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textAlignment="center"
-            android:textColor="@color/colorButton"
             android:text="Register"
-            android:id="@+id/registerLog"/>
+            android:textAlignment="center"
+            android:textColor="@color/colorButton" />
 
     </LinearLayout>
 
