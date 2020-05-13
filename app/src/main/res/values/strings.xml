@@ -9,4 +9,22 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string-array name="fakultas_list">
+        <item>Fakultas Ekonomi Bisnis</item>
+        <item>Fakultas Hukum</item>
+        <item>Fakultas Ilmu Administrasi</item>
+        <item>Fakultas Ilmu Budaya</item>
+        <item>Fakultas Ilmu Kelautan</item>
+        <item>Fakultas Ilmu Komputer</item>
+        <item>Fakultas Ilmu Sosial dan Ilmu Politik</item>
+        <item>Fakultas Kedokteran</item>
+        <item>Fakultas Kedokteran Gigi</item>
+        <item>Fakultas Kedokteran Hewan</item>
+        <item>Fakultas Matematika dan Ilmu Pengetahuan Alam</item>
+        <item>Fakultas Pendidikan Vokasi</item>
+        <item>Fakultas Pertanian</item>
+        <item>Fakultas Peternakan</item>
+        <item>Fakultas Teknik</item>
+        <item>Fakultas Teknologi Pertanian</item>
+    </string-array>
 </resources>

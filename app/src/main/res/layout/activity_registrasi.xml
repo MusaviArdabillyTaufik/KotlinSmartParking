@@ -49,13 +49,12 @@
                 android:inputType="numberDecimal"
                 android:id="@+id/nim"/>
 
-            <EditText
+            <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorFont"
-                android:textColorHint="@color/colorFont"
-                android:hint="Fakultas"
-                android:id="@+id/fakultas" />
+                android:layout_marginTop="5dp"
+                android:id="@+id/fakultas"
+                android:entries="@array/fakultas_list"/>
 
             <EditText
                 android:layout_width="match_parent"

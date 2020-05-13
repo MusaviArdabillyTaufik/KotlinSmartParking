@@ -3,6 +3,7 @@ package com.example.smartparking
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.androidnetworking.AndroidNetworking
@@ -18,22 +19,24 @@ class RegistrasiActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registrasi)
 
+        val fakultasSpinner = findViewById(R.id.fakultas) as Spinner
+
+
         registerCreate.setOnClickListener {
 
             val name = nama.text.toString()
             val email = email.text.toString()
             val nim = nim.text.toString()
-            val fakultas = fakultas.text.toString()
+            val fakultas = fakultas..toString()
             val batch = batch.text.toString()
             val password = password.text.toString()
 
-            if (name != "" || email != "" || nim != "" || fakultas != "" || batch != "" || email != "" ||
+            if (name != "" || email != "" || nim != "" || batch != "" || email != "" ||
                 password != ""
             ) {
                 if (name != "") {
                     if (email != "") {
                         if (nim != "") {
-                            if (fakultas != "") {
                                 if (batch != "") {
                                     if (password != "") {
                                         postServer(name, email, nim, fakultas, batch, password)
@@ -63,14 +66,6 @@ class RegistrasiActivity : AppCompatActivity() {
                                         .show()
                                 }
                             } else {
-                                Toast.makeText(
-                                    applicationContext,
-                                    "Fakultas mohon diisi!",
-                                    Toast.LENGTH_LONG
-                                )
-                                    .show()
-                            }
-                        } else {
                             Toast.makeText(
                                 applicationContext,
                                 "NIM mohon diisi!",
