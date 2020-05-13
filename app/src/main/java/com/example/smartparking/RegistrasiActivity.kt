@@ -23,12 +23,12 @@ class RegistrasiActivity : AppCompatActivity() {
         setContentView(R.layout.activity_registrasi)
 
         val f_list = resources.getStringArray(R.array.fakultas_list)
-        val spinner = findViewById(R.id.fakultas) as Spinner
+        val spinner = findViewById<Spinner>(R.id.fakultas)
         val arrayadapter = ArrayAdapter(this@RegistrasiActivity, android.R.layout.simple_spinner_item, f_list)
         spinner.adapter = arrayadapter
         spinner.onItemSelectedListener = object  : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                val fakSpin = parent?.getItemAtPosition(p2).toString()
+                parent?.getItemAtPosition(p2).toString() // njupuk value
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -41,7 +41,7 @@ class RegistrasiActivity : AppCompatActivity() {
             val name = nama.text.toString()
             val email = email.text.toString()
             val nim = nim.text.toString()
-            val fakultas = spinner.getItemAtPosition().toString() //Carane nyelok nekene piye pal ?
+            val fakultas = spinner.adapter.toString() //Carane nyelok nekene piye pal ?
             val batch = batch.text.toString()
             val password = password.text.toString()
 
