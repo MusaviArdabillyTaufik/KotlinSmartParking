@@ -77,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun postkerserver(data1: String, data2: String) {
-        AndroidNetworking.post("https://test-park1ng.000webhostapp.com/postLogin.php")
+        AndroidNetworking.post("https://smart-parking.my.id/postLogin.php")
             .addBodyParameter("email", data1)
             .addBodyParameter("password", data2)
             .setPriority(Priority.MEDIUM).build()

@@ -133,7 +133,7 @@ class PetugasActivity : AppCompatActivity() {
 
 
     fun postServer(data1: String, data2: String) {
-        AndroidNetworking.post("https://test-park1ng.000webhostapp.com/createLaporan.php")
+        AndroidNetworking.post("https://smart-parking.my.id/createLaporan.php")
             .addBodyParameter("qr_code", data1)
             .addBodyParameter("plat_nomor", data2)
             .setPriority(Priority.MEDIUM).build()
@@ -154,7 +154,7 @@ class PetugasActivity : AppCompatActivity() {
     }
 
     fun keluarServer(data1: String, data2: String) {
-        AndroidNetworking.post("https://test-park1ng.000webhostapp.com/updateLaporan.php")
+        AndroidNetworking.post("https://smart-parking.my.id/updateLaporan.php")
             .addBodyParameter("qr_code", data1)
             .addBodyParameter("plat_nomor", data2)
             .setPriority(Priority.MEDIUM)
