@@ -10,9 +10,11 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     private var mScannerView: ZXingScannerView? = null
 
     public override fun onCreate(state: Bundle?) {
+
         super.onCreate(state)
         mScannerView = ZXingScannerView(this)   // Programmatically initialize the scanner view
         setContentView(mScannerView)                // Set the scanner view as the content view
+
     }
 
     public override fun onResume() {
@@ -27,7 +29,7 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     }
 
     override fun handleResult(rawResult: Result) {
-        PetugasActivity.tvresult!!.text = rawResult.text
+        PetugasActivity.tvresult!!.text = rawResult.getText()
         onBackPressed()
     }
 }

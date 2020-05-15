@@ -15,6 +15,7 @@ import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import kotlinx.android.synthetic.main.activity_login.*
+import maes.tech.intentanim.CustomIntent
 import org.json.JSONObject
 
 
@@ -67,6 +68,8 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(context, RegistrasiActivity::class.java)
 
             startActivity(intent)
+            CustomIntent.customType(this, "bottom-to-up")
+            finish()
         }
 
     }
@@ -74,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun postkerserver(data1: String, data2: String) {
-        AndroidNetworking.post("https://test-park1ng.000webhostapp.com/postLogin.php")
+        AndroidNetworking.post("https://smart-parking.my.id/postLogin.php")
             .addBodyParameter("email", data1)
             .addBodyParameter("password", data2)
             .setPriority(Priority.MEDIUM).build()
@@ -85,7 +88,7 @@ class LoginActivity : AppCompatActivity() {
 
                     if (jsonArray.length() == 0) {
                         Log.e("_kotlinTitle", "null")
-                        Toast.makeText(applicationContext, "Error Bambang", Toast.LENGTH_LONG)
+                        Toast.makeText(applicationContext, "Email atau Password salah !", Toast.LENGTH_LONG)
                             .show()
                     }
 
@@ -124,6 +127,12 @@ class LoginActivity : AppCompatActivity() {
                             inten.putExtra("angkatan", angkatan)
                             inten.putExtra("fakultas", fakultas)
                             startActivity(inten)
+                            Toast.makeText(
+                                applicationContext,
+                                "Selamat Datang :)",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            CustomIntent.customType(this@LoginActivity, "left-to-right")
                             finish()
                         } else if (rolelogin == "petugas") {
                             val sharedPreferences =
@@ -148,6 +157,12 @@ class LoginActivity : AppCompatActivity() {
                             inten.putExtra("telfon", telfon)
                             inten.putExtra("alamat", alamat)
                             startActivity(inten)
+                            Toast.makeText(
+                                applicationContext,
+                                "Selamat Datang :)",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            CustomIntent.customType(this@LoginActivity, "left-to-right")
                             finish()
                         } else if (rolelogin == "admin") {
                             Toast.makeText(
@@ -181,4 +196,3 @@ class LoginActivity : AppCompatActivity() {
             RECORD_REQUEST_CODE)
     }
 }
-

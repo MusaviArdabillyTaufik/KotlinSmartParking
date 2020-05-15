@@ -3,6 +3,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import maes.tech.intentanim.CustomIntent
 
 class SplashScreen : AppCompatActivity() {
 
@@ -13,6 +14,7 @@ class SplashScreen : AppCompatActivity() {
         val handler = Handler()
         handler.postDelayed({
             startActivity(Intent(applicationContext, LoginActivity::class.java))
+            CustomIntent.customType(this, "fadein-to-fadeout")
             finish()
         }, 3000L)
     }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -15,6 +16,7 @@ import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
 import kotlinx.android.synthetic.main.activity_main.*
+import maes.tech.intentanim.CustomIntent
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private var etqr: EditText? = null
     private var iv: ImageView? = null
     private var detailMhs: Button? = null
+    private var doubleBackToExitPressedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             builder.setMessage(" Email : $email \n NIM : $nim \n Angkatan : $angkatan \n Fakultas : $fakultas")
             //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
 
-            builder.setNegativeButton(android.R.string.no) { dialog, which ->
+            builder.setNegativeButton("OK") { dialog, which ->
 
             }
 
@@ -61,6 +64,12 @@ class MainActivity : AppCompatActivity() {
             editor.apply()
 
             startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+            Toast.makeText(
+                applicationContext,
+                "Selamat Tinggal :(",
+                Toast.LENGTH_LONG
+            ).show()
+            CustomIntent.customType(this, "right-to-left")
             finish()
         }
 
@@ -113,6 +122,19 @@ class MainActivity : AppCompatActivity() {
 
         bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight)
         return bitmap
+    }
+
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            CustomIntent.customType(this, "fadein-to-fadeout")
+            finish()
+            return
+        }
+
+        this.doubleBackToExitPressedOnce = true
+        Toast.makeText(this, "Tekan Sekali lagi untuk keluar Aplikasi!", Toast.LENGTH_SHORT).show()
+
+        Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }
 
     companion object {
